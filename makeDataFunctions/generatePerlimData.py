@@ -390,4 +390,4 @@ def makeAllCSVData(numPeople):
     makePersonCSV(numPeople)
     makeConversationandTextTable(round(numPeople/10))
 
-makeAllCSVData(100)
+#makeAllCSVData(1000)

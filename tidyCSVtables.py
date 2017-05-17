@@ -194,8 +194,8 @@ def getAreaCode(phoneNum):
         return areacode
 
 def tidyAllTable():
-    # tidyPersonTable()
-    # tidyConvoTable()
+    tidyPersonTable()
+    tidyConvoTable()
     tidyTextTable()
 
-tidyAllTable()
+#tidyAllTable()
