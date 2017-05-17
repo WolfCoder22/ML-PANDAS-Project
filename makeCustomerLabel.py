@@ -18,7 +18,6 @@ def makeFullCustomerDf():
 
     #add person data that are customers to the df
     fullCustomerDF= customerDf.merge(right=personDf, how='left')
-    fullCustomerDF.info()
 
     #merge convo Data to customers
     #drop CUSTOMER_idPerson since redundant
@@ -35,41 +34,46 @@ def makeFullCustomerDf():
     fullCustomerDF=fullCustomerDF.rename(columns={'idPerson':'customerId'}).drop('idText', axis=1)
 
     #drop customerRepId
-    fullCustomerDF.drop('CUSTOMER_REP_idPerson', axis=1)
+    fullCustomerDF=fullCustomerDF.drop('CUSTOMER_REP_idPerson', axis=1)
 
-    #pivot the plotform count
-    fullCustomerDFPivot = fullCustomerDF[['customerId', 'PLATFORM', 'CONVO_COUNT']].pivot_table(index='customerId' , columns='PLATFORM',values='CONVO_COUNT')
+    fullCustomerDF.to_csv('tidyTables/fullCustomerData.csv', index=False)
+    return fullCustomerDF
+
+#pivot the plotform count
+# pivotColName='PLATFORM'
+# valueColName='CONVO_COUNT'
+# customerDFPivot = fullCustomerDF[['customerId', pivotColName, valueColName]].pivot_table(index='customerId' , columns=pivotColName,values=valueColName)
+# fullCustomerDF= addPivotTablesToOrgDF(fullCustomerDF, customerDFPivot, pivotColName, valueColName)
+#
+#
+# # fullCustomerDF = fullCustomerDF.pivot_table(columns='KEYWORD',values='WORD_COUNT', index=['COMPANY', 'idConversation', 'customerId', 'AREA_CODE'
+# #                                           ,'LENGTH_MINS', 'IS_CALL'])
+#
+# fullCustomerDFPivot.info()
+# print(fullCustomerDFPivot.head())
+# print(list(fullCustomerDFPivot.columns.values))
+# print(list(fullCustomerDFPivot.index.values))
 
 
+def addPivotTablesToOrgDF(orgDf, pivotedDF, pivotColName, valueColName, orgIndexColname='idCustomer'):
 
-    # fullCustomerDF = fullCustomerDF.pivot_table(columns='KEYWORD',values='WORD_COUNT', index=['COMPANY', 'idConversation', 'customerId', 'AREA_CODE'
-    #                                           ,'LENGTH_MINS', 'IS_CALL'])
-
-    fullCustomerDFPivot.info()
-    print(fullCustomerDFPivot.head())
-    print(list(fullCustomerDFPivot.columns.values))
-    print(list(fullCustomerDFPivot.index.values))
-
-
-def addPivotTablesToOrgDF(orgDf, pivotedDF, pivotColName, valueColName, newColNames, orgIndexColname):
-
-    newColNames= pivotedDF.columns.values
-    orgIndexColname=
+    pivotColNames= pivotedDF.columns.values
+    indexVals=pivotedDF.index.values
 
     #add new pivot column names to the orgDF
-    newColNamesOrg=[]
-    for colName in newColNames:
-        newColNamesOrg= pivotColName+"_"+colName+'_'+valeColName
+    newColNames=[]
+    for colName in pivotColNames:
+        newColNamesOrg= pivotColName+"_"+colName+'_'+valueColName
         newColNamesOrg.append(newColNamesOrg)
 
-    for newColName in newColNamesOrg:
+    for newColName in newColNames:
         orgDf[newColName]= nan
 
-    #go through each id of orginal
+    #go through each id of original
     for id in indexVals:
 
         #get rows with that index
-        specficIndx= orgDf[orgDf[]]
+        specficIndex= orgDf[orgDf[orgIndexColname==id]]
 
 makeFullCustomerDf()
 
