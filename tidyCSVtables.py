@@ -87,7 +87,7 @@ def tidyTextTable():
     textDf = pd.melt(textDf, id_vars=id_vars, value_vars=allWords,
                        var_name='KEYWORD', value_name='WORD_COUNT')
     # save tidy CSV and return
-    textDf.to_csv('tidyTables/Text.csv')
+    textDf.to_csv('tidyTables/Text.csv', index=False)
     return textDf
 
 
@@ -128,7 +128,7 @@ def tidyConvoTable():
     convoDf['IS_CALL']= convoDf['IS_CALL'].astype(int)
 
     #save tidy CSV and return
-    convoDf.to_csv('tidyTables/Conversation.csv')
+    convoDf.to_csv('tidyTables/Conversation.csv', index=False)
     return convoDf
 
 
@@ -148,7 +148,7 @@ def tidyPersonTable():
                       var_name='PLATFORM', value_name='CONVO_COUNT')
 
     #gsave tidy table and return
-    personDf.to_csv('tidyTables/Person.csv')
+    personDf.to_csv('tidyTables/Person.csv', index=False)
     return personDf
 
 #get rid of non digits in phone num
@@ -190,3 +190,10 @@ def getAreaCode(phoneNum):
             endIndx=1
         areacode= normalizeNum[0:endIndx]
         return areacode
+
+def tidyAllTable():
+    tidyPersonTable()
+    tidyConvoTable()
+    tidyTextTable()
+
+tidyAllTable()

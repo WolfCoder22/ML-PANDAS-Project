@@ -175,13 +175,17 @@ def makeConversationandTextTable(numReps):
 
             pIdCycle = cycle([repPid, customerPid])
 
+            isPositive = False
+            if random() > .5:
+                isPositive = True
+
             #make random amount of texts for each convo with guassian distribution
             numTextsInConvo= getGuassianPosNum(10, 7, 3) #mean 10, std 7, min
             for r in range(numTextsInConvo):
 
                 #cycle between rep then customer
                 pId=next(pIdCycle)
-                textData= makeTextEntry(textIds[textIdCIndex], idConvo, pId, r, numTextsInConvo, isLastRep, isLastConvo)
+                textData= makeTextEntry(textIds[textIdCIndex], idConvo, pId, r, numTextsInConvo, isLastRep, isLastConvo, isPositive)
                 TextOut.write(textData)
 
                 textIdCIndex+=1
@@ -226,14 +230,11 @@ def makeConvoData(idConvo, callLength, isCall, isText, platform, repPid, custome
     return convoData
 
 
-def makeTextEntry(idtext, idConvo, pId, k, numTextsInConvo, isLastRep, isLastConvo):
+def makeTextEntry(idtext, idConvo, pId, k, numTextsInConvo, isLastRep, isLastConvo, isPositive):
 
     text=''
 
     #generate text with random stop words and random Pos or Neg Words
-    isPositive= False
-    if random()>.5:
-        isPositive=True
 
     #make words in text be random 3 to 66 total
     numWordsInText= randrange(3, 66)
