@@ -117,7 +117,7 @@ def makeConversationandTextTable(numReps):
 
     # get df for convocount customer and rep
     fullCustDf = custDf.merge(right=personDf, how='left')
-    fullRepDf = repDf.merge(right=personDf, how='left', on='idPerson')
+    fullRepDf = repDf.merge(right=personDf, how='left')
 
     customerIdsdf = fullCustDf.idPerson
     repIdsdf = fullRepDf.idPerson
@@ -213,7 +213,6 @@ def makeConversationandTextTable(numReps):
 
     #store the new Person Dataframe with counts to CSV
     personDf.to_csv(personFile, index=False)
-
 
 
 def makeConvoData(idConvo, callLength, isCall, isText, platform, repPid, customerPid, j, isLastRep):
@@ -387,7 +386,7 @@ def getGuassianPosNum(mean, std, min=0, max=inf):
 
 def makeAllCSVData(numPeople):
 
-    #makePersonCSV(numPeople)
+    makePersonCSV(numPeople)
     makeConversationandTextTable(round(numPeople/10))
 
-makeAllCSVData(10)
+makeAllCSVData(100)
