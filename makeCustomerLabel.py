@@ -1,4 +1,5 @@
 import pandas as pd
+from math import nan
 
 customerFile= 'fullCSVtables/testData/Customer.csv'
 CustRepFile= 'fullCSVtables/testData/CustomerRep.csv'
@@ -30,9 +31,45 @@ def makeFullCustomerDf():
     #add relevent CustomRep data
     fullCustomerDF = repDf.merge(right=fullCustomerDF, how='right', right_on='CUSTOMER_REP_idPerson', left_on='repId').drop('repId', axis=1)
 
+    #rename the pId and drop TextId
+    fullCustomerDF=fullCustomerDF.rename(columns={'idPerson':'customerId'}).drop('idText', axis=1)
 
-    fullCustomerDF.info()
-    print(fullCustomerDF.head())
+    #drop customerRepId
+    fullCustomerDF.drop('CUSTOMER_REP_idPerson', axis=1)
+
+    #pivot the plotform count
+    fullCustomerDFPivot = fullCustomerDF[['customerId', 'PLATFORM', 'CONVO_COUNT']].pivot_table(index='customerId' , columns='PLATFORM',values='CONVO_COUNT')
+
+
+
+    # fullCustomerDF = fullCustomerDF.pivot_table(columns='KEYWORD',values='WORD_COUNT', index=['COMPANY', 'idConversation', 'customerId', 'AREA_CODE'
+    #                                           ,'LENGTH_MINS', 'IS_CALL'])
+
+    fullCustomerDFPivot.info()
+    print(fullCustomerDFPivot.head())
+    print(list(fullCustomerDFPivot.columns.values))
+    print(list(fullCustomerDFPivot.index.values))
+
+
+def addPivotTablesToOrgDF(orgDf, pivotedDF, pivotColName, valueColName, newColNames, orgIndexColname):
+
+    newColNames= pivotedDF.columns.values
+    orgIndexColname=
+
+    #add new pivot column names to the orgDF
+    newColNamesOrg=[]
+    for colName in newColNames:
+        newColNamesOrg= pivotColName+"_"+colName+'_'+valeColName
+        newColNamesOrg.append(newColNamesOrg)
+
+    for newColName in newColNamesOrg:
+        orgDf[newColName]= nan
+
+    #go through each id of orginal
+    for id in indexVals:
+
+        #get rows with that index
+        specficIndx= orgDf[orgDf[]]
 
 makeFullCustomerDf()
 
