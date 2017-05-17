@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9addc864-d42d-4416-8954-6d285d1a2983" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/analyzeCustomerData.py" afterPath="$PROJECT_DIR$/analyzeCustomerData.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +24,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="analyzeCustomerData.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="analyzeCustomerData.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/analyzeCustomerData.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
@@ -32,6 +32,19 @@
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="285">
+                <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -150,7 +163,6 @@
         <option value="$PROJECT_DIR$/storedData/personIds.csv" />
         <option value="$PROJECT_DIR$/storedData/uniquePhoneNums.csv" />
         <option value="$PROJECT_DIR$/makeDataFunctions/createCSVs.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/makeDataFunctions/createPersonCSVs.py" />
         <option value="$PROJECT_DIR$/makeDataFunctions/generateFirstDBdata.py" />
         <option value="$PROJECT_DIR$/storedData/conversationIdsL.csv" />
@@ -186,13 +198,14 @@
         <option value="$PROJECT_DIR$/makeCustomerLabel.py" />
         <option value="$PROJECT_DIR$/createCustomerLabels.py" />
         <option value="$PROJECT_DIR$/analyzeCustomerData.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="38" />
     <option name="y" value="52" />
-    <option name="width" value="1400" />
+    <option name="width" value="1402" />
     <option name="height" value="768" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -497,10 +510,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="38" y="52" width="1400" height="768" extended-state="0" />
+    <frame x="38" y="52" width="1402" height="768" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26804122" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26764706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988167" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4556213" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -540,7 +553,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/makeDataFunctions/generateFirstDBdata.py" />
     <entry file="file://$PROJECT_DIR$/storedData/conversationIds.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -809,6 +821,17 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="285">
+            <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
