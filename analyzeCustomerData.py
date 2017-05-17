@@ -15,9 +15,20 @@ def visualizeConvoCount():
     #add a sum collumn for each customer
     custDf['ABC Sum']= custDf.sum(axis=1)
 
-    #make a bar chart
-    custDf.plot(kind='box', title='Platform Word Count', cmap='Set2')
-    plt.show()
+    # make a box plot
+    fig= plt.figure()
+    fig.suptitle('bold figure suptitle', fontsize=14, fontweight='bold')
+    fig.suptitle('Customer Conversation Count Statistics', fontsize=16)
 
+    ax = fig.add_subplot(111)
+    colNames = list(custDf.columns.values)
+    ax.boxplot(custDf[['A', 'B', 'C', 'ABC Sum']].values, showmeans=True, labels=colNames)
+
+    #get the mean and median for each value
+    ax.set_xlabel('Platform')
+    ax.set_ylabel('Number of Conversations')
+
+    plt.savefig('EDA Graphs/customerConvoCount.png', bbox_inches='tight')
+    plt.show()
 
 visualizeConvoCount()
