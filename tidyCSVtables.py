@@ -86,6 +86,8 @@ def tidyTextTable():
     id_vars = ['idText', 'idConversation', 'personId']
     textDf = pd.melt(textDf, id_vars=id_vars, value_vars=allWords,
                        var_name='KEYWORD', value_name='WORD_COUNT')
+
+    textDf.info()
     # save tidy CSV and return
     textDf.to_csv('tidyTables/Text.csv', index=False)
     return textDf
@@ -192,8 +194,8 @@ def getAreaCode(phoneNum):
         return areacode
 
 def tidyAllTable():
-    tidyPersonTable()
-    tidyConvoTable()
+    # tidyPersonTable()
+    # tidyConvoTable()
     tidyTextTable()
 
 tidyAllTable()
