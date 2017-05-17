@@ -58,8 +58,14 @@ negWords = getIds('storedData/words/negativeWords.csv', False)
 posWords = getIds('storedData/words/positiveWords.csv', False)
 stopWords = getIds('storedData/words/stopWords.csv', False)
 
+customerFile= 'fullCSVtables/testData/Customer.csv'
+CustRepFile= 'fullCSVtables/testData/CustomerRep.csv'
+personFile= 'fullCSVtables/testData/Person.csv'
+textFile= 'fullCSVtables/testData/Text.csv'
+conversationFile= 'fullCSVtables/testData/Conversation.csv'
+
 def tidyTextTable():
-    textDf= pd.read_csv('fullCSVtables/Text.csv')
+    textDf= pd.read_csv(textFile)
 
     #add a column for each positive and negative word
     allWords= negWords+posWords
@@ -71,8 +77,6 @@ def tidyTextTable():
     for wordCol in allWords:
         textDf[wordCol]= 0
 
-    textDf.info()
-
     #count the words
     textDf= textDf.apply(countWords, axis=1)
     textDf=textDf.drop('TEXT', axis=1)
@@ -82,7 +86,8 @@ def tidyTextTable():
     id_vars = ['idText', 'idConversation', 'personId']
     textDf = pd.melt(textDf, id_vars=id_vars, value_vars=allWords,
                        var_name='KEYWORD', value_name='WORD_COUNT')
-
+    # save tidy CSV and return
+    textDf.to_csv('tidyTables/Text.csv')
     return textDf
 
 
@@ -114,7 +119,7 @@ def countWords(textDf):
 
 
 def tidyConvoTable():
-    convoDf = pd.read_csv('fullCSVtables/Conversation.csv')
+    convoDf = pd.read_csv(conversationFile)
 
     #make one bool Col for is_call instead of text too
     convoDf = convoDf.drop(labels='IS_TEXT_CHAT', axis=1)
@@ -122,12 +127,14 @@ def tidyConvoTable():
     #bool-> binary encoding
     convoDf['IS_CALL']= convoDf['IS_CALL'].astype(int)
 
+    #save tidy CSV and return
+    convoDf.to_csv('tidyTables/Conversation.csv')
     return convoDf
 
 
 def tidyPersonTable():
 
-    personDf= pd.read_csv('fullCSVtables/Person.csv', index_col=0)
+    personDf= pd.read_csv(personFile)
 
     # normalize phone number
     personDf['AREA_CODE'] = personDf['PHONE NUMBER'].apply(getAreaCode)
@@ -140,9 +147,8 @@ def tidyPersonTable():
     personDf= pd.melt(personDf, id_vars=id_vars, value_vars=['A','B','C'],
                       var_name='PLATFORM', value_name='CONVO_COUNT')
 
-    #get area codes. Most are American
-    print(personDf.head())
-
+    #gsave tidy table and return
+    personDf.to_csv('tidyTables/Person.csv')
     return personDf
 
 #get rid of non digits in phone num
@@ -184,6 +190,3 @@ def getAreaCode(phoneNum):
             endIndx=1
         areacode= normalizeNum[0:endIndx]
         return areacode
-
-
-tidyTextTable()
