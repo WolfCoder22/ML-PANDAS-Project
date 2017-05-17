@@ -99,8 +99,6 @@ def makeConversationandTextTable(numReps):
     convoIds = getIds(conversationIDfile)
     textIds = getIds(textIdFile)
 
-    textIdCount=0
-
     # initiate csv files
     ConvoOut = open(conversationFile, 'w')
     TextOut = open(textFile, 'w')
@@ -136,18 +134,17 @@ def makeConversationandTextTable(numReps):
         repPid = repIdsdf.iloc[repIndex]
         repIndex+=1
 
-        if i == numReps - 1:
+        if i == (numReps - 1):
             isLastRep = True
 
         # make a conversation for 100 random customers
         isLastConvo=False
+
+        # make a conversation for 100 random customers
         for j in range(100):
 
             if j == 99:
                 isLastConvo = True
-
-        # make a conversation for 100 random customers
-        for j in range(100):
             idConvo= convoIds[k]
             k+=1
 
@@ -180,11 +177,11 @@ def makeConversationandTextTable(numReps):
 
             #make random amount of texts for each convo with guassian distribution
             numTextsInConvo= getGuassianPosNum(10, 7, 3) #mean 10, std 7, min
-            for k in range(numTextsInConvo):
+            for r in range(numTextsInConvo):
 
                 #cycle between rep then customer
                 pId=next(pIdCycle)
-                textData= makeTextEntry(textIds[textIdCIndex], idConvo, pId, k, numTextsInConvo, isLastRep, isLastConvo)
+                textData= makeTextEntry(textIds[textIdCIndex], idConvo, pId, r, numTextsInConvo, isLastRep, isLastConvo)
                 TextOut.write(textData)
 
                 textIdCIndex+=1
@@ -215,20 +212,17 @@ def makeConversationandTextTable(numReps):
             personDf.set_value(repIndexT, countcolName, repConvoCount)
 
     #store the new Person Dataframe with counts to CSV
-    personDf.to_csv(personFile, index_label='idPerson')
+    personDf.to_csv(personFile, index=False)
 
 
 
 def makeConvoData(idConvo, callLength, isCall, isText, platform, repPid, customerPid, j, isLastRep):
 
+    convoData=str(idConvo)+','+str(callLength)+','+str(isCall)+','+str(isText)+","+platform+','+str(repPid)+','+str(customerPid)+'\n'
 
-    convoData=str(idConvo)+','+str(callLength)+','+str(isCall)+','+str(isText)+","+platform+','+str(repPid)+','+str(customerPid)
     #don't add new line for last entry
-    if ~isLastRep and j==99:
-        convoData+='\n'
-
-def makeConvoData(idConvo, callLength, isCall, isText, platform, repPid, customerPid):
-    return str(idConvo)+','+str(callLength)+','+str(isCall)+','+str(isText)+","+platform+','+str(repPid)+','+str(customerPid)+'\n'
+    if isLastRep and j==99:
+        convoData= convoData[:len(convoData)-1]
 
     return convoData
 
@@ -393,9 +387,7 @@ def getGuassianPosNum(mean, std, min=0, max=inf):
 
 def makeAllCSVData(numPeople):
 
-    makePersonCSV(numPeople)
-    makeConversationandTextTable(round(numPeople/10))# param =Numreps= numpeople/10
+    #makePersonCSV(numPeople)
+    makeConversationandTextTable(round(numPeople/10))
 
-#makeAllCSVData(20000)
-makePersonCSV(100)
-makeConversationandTextTable(10)# num reps(100/10)
+makeAllCSVData(10)

@@ -106,7 +106,6 @@ def writeNewIds(fileName, numNewIds, idLength, incremental=False):
 # writeNewIds(personIDfile, 20000, 6)
 #writeNewIds(conversationIDfile, 2000000, 7, incremental=True) #avg 10 conversations per customer
 #writeNewIds(textIdFile, 49000000, 8, incremental=True)  #each convo has 10 text avg
-#writeNewIds(textIdFile, 4900000, 8, incremental=True)  #each convo has 10 text avg
 #writeNewIds(phoneNumFile, 20000, 10)
 
 
